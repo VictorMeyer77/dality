@@ -1,0 +1,14 @@
+{
+  "uniqueness": [
+    {
+      "name": "UniquePerson",
+      "criticality": 3,
+      "condition": ["first_name", "last_name"]
+    },
+    {
+      "name": "UniqueCompany",
+      "criticality": 1,
+      "condition": ["siren"]
+    }
+  ]
+}
