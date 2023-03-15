@@ -3,7 +3,7 @@ from jsonschema.exceptions import ValidationError
 from src.config.table_config import read_table_config, validate_config
 
 
-class TestSchemas(unittest.TestCase):
+class TestTableConfig(unittest.TestCase):
 
     def test_valid_config_raises_error_when_field_is_unknown(self):
         config = {"unknown": []}
