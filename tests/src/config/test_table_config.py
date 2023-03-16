@@ -35,5 +35,18 @@ class TestTableConfig(unittest.TestCase):
                            "criticality": 1,
                            "condition": ["siren"]
                        }
+                   ],
+                   "completeness": [
+                       {
+                           "name": "CompletenessNames",
+                           "criticality": 3,
+                           "columns": ["first_name", "last_name"],
+                           "null_values": ["unknown", ""]
+                       },
+                       {
+                           "name": "CompletenessAge",
+                           "criticality": 1,
+                           "columns": ["age"]
+                       }
                    ]
                }
