@@ -48,5 +48,17 @@ class TestTableConfig(unittest.TestCase):
                            "criticality": 1,
                            "columns": ["age"]
                        }
+                   ],
+                   "accuracy": [
+                       {
+                           "name": "AccuracyPrice",
+                           "criticality": 3,
+                           "condition": "price_excl_tax < 0.0 OR price_excl_tax < price_incl_tax"
+                       },
+                       {
+                           "name": "AccuracyProduct",
+                           "criticality": 1,
+                           "condition": "name LIKE ' %'"
+                       }
                    ]
                }

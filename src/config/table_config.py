@@ -55,6 +55,24 @@ completeness_schema = {
     "additionalProperties": False,
 }
 
+accuracy_schema = {
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "criticality": {
+            "type": "number",
+            "enum": [1, 2, 3]
+        },
+        "condition": {
+            "type": "string",
+        },
+    },
+    "required": ["name", "criticality", "condition"],
+    "additionalProperties": False,
+}
+
 
 def read_table_config(path):
     file = open(path, "r")
