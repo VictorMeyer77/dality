@@ -60,5 +60,13 @@ class TestTableConfig(unittest.TestCase):
                            "criticality": 1,
                            "condition": "name LIKE ' %'"
                        }
+                   ],
+                   "freshness": [
+                       {
+                           "name": "Freshness",
+                           "criticality": 2,
+                           "date_column": "created",
+                           "days_validity_period": 30
+                       }
                    ]
                }

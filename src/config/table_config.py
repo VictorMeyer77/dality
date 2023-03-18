@@ -73,6 +73,27 @@ accuracy_schema = {
     "additionalProperties": False,
 }
 
+freshness_schema = {
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "criticality": {
+            "type": "number",
+            "enum": [1, 2, 3]
+        },
+        "date_column": {
+            "type": "string",
+        },
+        "days_validity_period": {
+            "type": "number"
+        }
+    },
+    "required": ["name", "criticality", "date_column", "days_validity_period"],
+    "additionalProperties": False,
+}
+
 
 def read_table_config(path):
     file = open(path, "r")
