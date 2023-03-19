@@ -94,6 +94,37 @@ freshness_schema = {
     "additionalProperties": False,
 }
 
+integrity_schema = {
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "criticality": {
+            "type": "number",
+            "enum": [1, 2, 3]
+        },
+        "left_keys": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "additionalItems": False,
+        },
+        "right_keys": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1,
+            "additionalItems": False,
+        },
+    },
+    "required": ["name", "criticality", "left_keys", "right_keys"],
+    "additionalProperties": False,
+}
+
 
 def read_table_config(path):
     file = open(path, "r")

@@ -68,5 +68,13 @@ class TestTableConfig(unittest.TestCase):
                            "date_column": "created",
                            "days_validity_period": 30
                        }
+                   ],
+                   "integrity": [
+                       {
+                           "name": "IntegrityCustomerAddress",
+                           "criticality": 2,
+                           "left_keys": ["id"],
+                           "right_keys": ["id"]
+                       }
                    ]
                }
