@@ -1,6 +1,26 @@
 from jsonschema import validate
 import json
 
+dataframe_info_schema = {
+    "type": "object",
+    "properties": {
+        "env": {
+            "type": "string"
+        },
+        "source": {
+            "type": "string"
+        },
+        "schema": {
+            "type": "string"
+        },
+        "table": {
+            "type": "string"
+        },
+    },
+    "required": ["env", "source", "schema", "table"],
+    "additionalProperties": False,
+}
+
 uniqueness_schema = {
     "type": "object",
     "properties": {
@@ -137,7 +157,11 @@ def read_table_config(path):
 def validate_config(config):
     available_config_properties = list(map(lambda x: x.replace("_schema", ""),
                                            filter(lambda x: "_schema" in x, globals().keys())))
-    for field in config.keys():
+    if "dataframe_info" not in config.keys():
+        raise ValueError(f"missing property \"dataframe_info\" in config")
+    else:
+        validate(config["dataframe_info"], dataframe_info_schema)
+    for field in list(filter(lambda x: x != "dataframe_info", config.keys())):
         if field not in available_config_properties:
             raise ValueError(f"invalid property {field}, allowed: {available_config_properties}")
         else:
