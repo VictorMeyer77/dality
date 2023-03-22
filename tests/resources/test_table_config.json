@@ -1,14 +1,20 @@
 {
+  "dataframe_info": {
+      "env": "prod",
+      "source": "postgresql",
+      "schema": "website",
+      "table": "user"
+  },
   "uniqueness": [
     {
-      "name": "UniquePerson",
-      "criticality": 3,
+      "name": "UniquenessPerson",
+      "criticality": 2,
       "condition": ["first_name", "last_name"]
     },
     {
-      "name": "UniqueCompany",
-      "criticality": 1,
-      "condition": ["siren"]
+      "name": "UniquenessId",
+      "criticality": 3,
+      "condition": ["id"]
     }
   ],
   "completeness": [
@@ -26,14 +32,9 @@
   ],
   "accuracy": [
     {
-        "name": "AccuracyPrice",
-        "criticality": 3,
-        "condition": "price_excl_tax < 0.0 OR price_excl_tax < price_incl_tax"
-    },
-    {
-        "name": "AccuracyProduct",
-        "criticality": 1,
-        "condition": "name LIKE ' %'"
+        "name": "AccuracyAge",
+        "criticality": 2,
+        "condition": "age < 0"
     }
   ],
   "freshness": [
@@ -47,9 +48,15 @@
   "integrity": [
      {
         "name": "IntegrityCustomerAddress",
-        "criticality": 2,
+        "criticality": 1,
         "left_keys": ["id"],
-        "right_keys": ["id"]
+        "right_keys": ["id_customer"]
+     },
+     {
+        "name": "IntegrityCustomerAccount",
+        "criticality": 2,
+        "left_keys": ["id", "last_name"],
+        "right_keys": ["id_customer", "last_name"]
      }
   ]
 }
