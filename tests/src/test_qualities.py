@@ -26,7 +26,7 @@ class TestQualities(unittest.TestCase):
             schema=RESULT_SCHEMA
         )
         result = uniqueness_quality(spark, input_df, uniqueness_config)
-        assert (result.schema == target_result.schema) and (result.collect() == target_result.collect())
+        assert result.schema == target_result.schema and result.collect() == target_result.collect()
 
     def test_completeness_quality_returns_missing_count(self):
         dataset = [("Xavier", "unknown", 34),
@@ -54,7 +54,7 @@ class TestQualities(unittest.TestCase):
             schema=RESULT_SCHEMA
         )
         result = completeness_quality(spark, input_df, completeness_config)
-        assert (result.schema == target_result.schema) and (result.collect() == target_result.collect())
+        assert result.schema == target_result.schema and result.collect() == target_result.collect()
 
     def test_accuracy_quality_returns_match_count(self):
         dataset = [("productA", 10.0, 15.0),
@@ -81,7 +81,7 @@ class TestQualities(unittest.TestCase):
             schema=RESULT_SCHEMA
         )
         result = accuracy_quality(spark, input_df, accuracy_config)
-        assert (result.schema == target_result.schema) and (result.collect() == target_result.collect())
+        assert result.schema == target_result.schema and result.collect() == target_result.collect()
 
     def test_freshness_quality_returns_obsolete_count(self):
         dataset = [("Xavier", "Dupont", 34, datetime.now() - timedelta(days=25)),
@@ -104,7 +104,7 @@ class TestQualities(unittest.TestCase):
             schema=RESULT_SCHEMA
         )
         result = freshness_quality(spark, input_df, freshness_config)
-        assert (result.schema == target_result.schema) and (result.collect() == target_result.collect())
+        assert result.schema == target_result.schema and result.collect() == target_result.collect()
 
     def test_integrity_quality_returns_missing_relation_count(self):
         dataset_customers = [("Xavier", "Dupont", 34676),
@@ -137,7 +137,7 @@ class TestQualities(unittest.TestCase):
             schema=RESULT_SCHEMA
         )
         result = integrity_quality(spark, employees_input_df, [addresses_input_df, accounts_input_df], integrity_config)
-        assert (result.schema == target_result.schema) and (result.collect() == target_result.collect())
+        assert result.schema == target_result.schema and result.collect() == target_result.collect()
 
     def test_integrity_quality_raises_error_when_key_not_in_table(self):
         dataset_customers = [("Xavier", "Dupont", 34676),
@@ -234,4 +234,4 @@ class TestQualities(unittest.TestCase):
                   ("integrity", "IntegrityCustomerAccount", 2, 12)],
             schema=RESULT_SCHEMA
         )
-        assert (result.schema == target_result.schema) and (result.collect() == target_result.collect())
+        assert result.schema == target_result.schema and result.collect() == target_result.collect()
