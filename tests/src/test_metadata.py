@@ -88,9 +88,7 @@ class TestMetadata(unittest.TestCase):
             data=[("uniqueness", "UniquenessPerson", 2, 2, 3, "prod", "postgresql", "website", "user"),
                   ("uniqueness", "UniquenessId", 3, 2, 3, "prod", "postgresql", "website", "user"),
                   ("completeness", "CompletenessNames", 3, 3, 3, "prod", "postgresql", "website", "user"),
-                  ("completeness", "CompletenessAge", 1, 1, 3, "prod", "postgresql", "website", "user")],
-            schema=["quality", "constraint_name", "criticality",
-                    "invalid_rows_count", "env", "source", "schema", "table"]
+                  ("completeness", "CompletenessAge", 1, 1, 3, "prod", "postgresql", "website", "user")]
         )
         assert target_result.collect() == result.drop("dt_compute").collect()
         assert "dt_compute" in result.columns
